@@ -1,0 +1,60 @@
+/* Shadow DOM context — SDK production mode */
+:host {
+  font-size: 16px;
+  --radius: 6px;
+  --font-size-base: 14px;
+  --font-body: "Inter", sans-serif;
+  --font-display: "Playfair Display", serif;
+}
+
+/* Real DOM context — dev mode */
+:root {
+  --radius: 6px;
+  --font-size-base: 14px;
+  --font-body: "Inter", sans-serif;
+  --font-display: "Playfair Display", serif;
+}
+
+[data-theme="light"] {
+  --color-primary: #2D6A4F;
+  --color-danger: #c62828;
+  --color-border: #e0e0e0;
+  --color-bg: #f8f9fa;
+  --color-white: #ffffff;
+  --color-text: #1a1a1a;
+  --color-input-bg: #ffffff;
+  --color-input-text: var(--color-text);
+  --color-muted: #666666;
+  --color-navbar: #2D6A4F;
+  --color-navbar-muted: #f8f9fa;
+  --color-btn-save-bg: #2D6A4F;
+  --color-btn-save-text: #ffffff;
+  --color-btn-cancel-bg: #ffffff;
+  --color-btn-cancel-text: #1a1a1a;
+  --color-btn-edit-bg: #ffffff;
+  --color-btn-edit-text: #1a1a1a;
+  --color-btn-delete-bg: #c62828;
+  --color-btn-delete-text: #ffffff;
+}
+
+[data-theme="dark"] {
+  --color-primary: #52b788;
+  --color-danger: #ef5350;
+  --color-border: #333333;
+  --color-bg: #121212;
+  --color-white: #1e1e1e;
+  --color-text: #f0f0f0;
+  --color-input-bg: #2a2a2a;
+  --color-input-text: var(--color-text);
+  --color-muted: #999999;
+  --color-navbar: #1a1a1a;
+  --color-navbar-muted: #999999;
+  --color-btn-save-bg: #52b788;
+  --color-btn-save-text: #121212;
+  --color-btn-cancel-bg: #2a2a2a;
+  --color-btn-cancel-text: #f0f0f0;
+  --color-btn-edit-bg: #2a2a2a;
+  --color-btn-edit-text: #f0f0f0;
+  --color-btn-delete-bg: #ef5350;
+  --color-btn-delete-text: #ffffff;
+}

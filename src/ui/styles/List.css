@@ -1,0 +1,88 @@
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.menu-list__item {
+  margin: 0;
+  padding: 0;
+}
+
+.menu-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.menu-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.menu-card__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.menu-card__description {
+  margin: 0.375rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+}
+
+.menu-card__right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.menu-card__price {
+  font-weight: 700;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.menu-card__actions {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.menu-card__btn {
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius);
+  font-size: 0.8125rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: none;
+}
+
+.menu-card__btn--edit {
+  background-color: var(--color-btn-edit-bg);
+  color: var(--color-btn-edit-text);
+  border-color: var(--color-border);
+}
+
+.menu-card__btn--delete {
+  background-color: var(--color-btn-delete-bg);
+  color: var(--color-btn-delete-text);
+  border-color: var(--color-btn-delete-bg);
+}
