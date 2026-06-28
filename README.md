@@ -1,75 +1,113 @@
-# React + TypeScript + Vite
+# menu-admin SDK
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An embeddable menu management SDK for restaurant websites. Drop it into any
+site with three lines of code.
 
-Currently, two official plugins are available:
+## Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### UMD (plain HTML, no build tool)
 
-## React Compiler
+```html
+<script src="https://unpkg.com/@mohansilambarasu/menu-admin/dist/menu-admin.umd.js"></script>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<div id="menu-admin"></div>
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+<script>
+  const instance = MenuAdmin.createMenuAdmin(
+    document.getElementById("menu-admin"),
+    { theme: "light" },
+  );
+</script>
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### ESM (React/Vue/any bundler)
+
+```bash
+npm install @mohansilambarasu/menu-admin
+```
 
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import { createMenuAdmin } from "@mohansilambarasu/menu-admin";
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+const instance = createMenuAdmin(document.getElementById("menu-admin"), {
+  theme: "light",
+});
 
+// cleanup
+instance.unmount();
+```
+
+## API
+
+### `createMenuAdmin(container, config?)`
+
+Mounts the SDK into the given container.
+
+| Parameter | Type            | Required | Description               |
+| --------- | --------------- | -------- | ------------------------- |
+| container | HTMLElement     | yes      | DOM element to mount into |
+| config    | MenuAdminConfig | no       | Configuration options     |
+
+Returns a `MenuAdminInstance`.
+
+### `MenuAdminConfig`
+
+| Option | Type                | Default   | Description |
+| ------ | ------------------- | --------- | ----------- |
+| theme  | `"light" \| "dark"` | `"light"` | Color theme |
+
+### `MenuAdminInstance`
+
+| Method      | Description                      |
+| ----------- | -------------------------------- |
+| `unmount()` | Tears down the SDK and cleans up |
+
+## TypeScript
+
+Types are included. No `@types` package needed.
+
+```ts
+import { createMenuAdmin } from "@mohansilambarasu/menu-admin";
+import type {
+  MenuAdminConfig,
+  MenuAdminInstance,
+} from "@mohansilambarasu/menu-admin";
+
+const config: MenuAdminConfig = { theme: "dark" };
+const instance: MenuAdminInstance = createMenuAdmin(el, config);
+```
+
+## How it works
+
+- **Style isolation** — runs inside a Shadow DOM. Host styles cannot reach in,
+  SDK styles cannot leak out.
+- **Framework agnostic** — core store is plain TypeScript. React is the current
+  UI binding. ESM build externalizes React so the host supplies it.
+- **Two builds** — UMD for script tag usage, ESM for bundler environments.
+- **Lifecycle** — `createMenuAdmin` returns an instance with `unmount()` for
+  clean teardown.
+
+## Development
+
+```bash
+# install
+npm install
+
+# dev server
+npm run dev
+
+# build both formats + type declarations
+npm run build
+
+# preview what ships
+npm pack --dry-run
+```
+
+## Build outputs
+
+```
+dist/
+  menu-admin.umd.js   201kb  UMD, React bundled inside
+  menu-admin.es.js     14kb  ESM, React externalized
+  index.d.ts          238b   TypeScript declarations
 ```
