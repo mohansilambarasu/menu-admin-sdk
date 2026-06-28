@@ -8,7 +8,7 @@ site with three lines of code.
 ### UMD (plain HTML, no build tool)
 
 ```html
-<script src="https://unpkg.com/@mohansilambarasu/menu-admin/dist/menu-admin.umd.js"></script>
+<script src="https://unpkg.com/@mohansilambu/menu-admin/dist/menu-admin.umd.js"></script>
 
 <div id="menu-admin"></div>
 
@@ -23,11 +23,11 @@ site with three lines of code.
 ### ESM (React/Vue/any bundler)
 
 ```bash
-npm install @mohansilambarasu/menu-admin
+npm install @mohansilambu/menu-admin
 ```
 
 ```js
-import { createMenuAdmin } from "@mohansilambarasu/menu-admin";
+import { createMenuAdmin } from "@mohansilambu/menu-admin";
 
 const instance = createMenuAdmin(document.getElementById("menu-admin"), {
   theme: "light",
@@ -67,11 +67,11 @@ Returns a `MenuAdminInstance`.
 Types are included. No `@types` package needed.
 
 ```ts
-import { createMenuAdmin } from "@mohansilambarasu/menu-admin";
+import { createMenuAdmin } from "@mohansilambu/menu-admin";
 import type {
   MenuAdminConfig,
   MenuAdminInstance,
-} from "@mohansilambarasu/menu-admin";
+} from "@mohansilambu/menu-admin";
 
 const config: MenuAdminConfig = { theme: "dark" };
 const instance: MenuAdminInstance = createMenuAdmin(el, config);
